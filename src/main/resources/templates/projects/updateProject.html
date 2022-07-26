@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head th:replace="layouts :: header"></head>
+
+
+<body>
+
+<nav th:replace="layouts :: navbar"></nav> 
+
+	<div class="container"style="background:beige">
+
+		<h3>Update Project</h3>
+		<hr>
+
+		<form th:action="@{/projects/save}" th:object="${project}" method="POST">
+			<!-- used for update -->
+
+			<div class="input-group mb-3">
+				<input type="hidden" th:field="${project.projectId}" />
+			</div>
+
+
+			<div class="input-group mb-3">
+			
+			     <!-- this will be used to the project field that clicked on used for update-->
+			    <input type="hidden" th:field="${project.projectId}"/>
+			    
+				<span class="input-group-text">Project Name</span>
+				<input type="text" aria-label="Project name" class="form-control" th:field="${project.name}">
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Stages</span>
+				<select class="form-select" th:field="${project.stage}">
+					<option th:value="NOTSTARTED">Not Started</option>
+					<option th:value="INPROGRESS">In Progress</option>
+					<option th:value="COMPLETED">Completed</option>
+				</select>
+			</div>
+			
+			<div class="input-group mb-3">
+				<span class="input-group-text">Employee Name</span>
+				<select th:field="*{employees}" multiple="multiple">
+					<option th:each="employee : ${allEmployees}" th:value="${employee.employeeId}"
+						th:text="${employee.firstName}">
+					</option>
+				</select>
+			</div>
+			
+			
+			<div class="input-group mb-3">
+				<span class="input-group-text">Country</span>
+				<select th:field="${project.location}" class="form-control">
+					<option th:value="select">Select</option>
+					<option th:value="usa">United States</option>
+					<option th:value="india">India</option>
+					<option th:value="uk">United Kingdom</option>
+				</select>
+			</div>
+
+			
+			
+			<div class="input-group mb-3">
+				<span class="input-group-text">Start date</span>
+
+				<input type="text" th:name="${project.startDate}" class="form-control" autocomplete="off"
+					th:id="${project.startDate}" placeholder="MM/DD/YYYY" th:field="${project.startDate}" />
+				<div class="input-group-addon">
+					<i class="fa fa-calendar">
+					</i>
+				</div>
+
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">End date</span>
+				<input type="text" class="form-control" th:name="${project.endDate}" placeholder="MM/DD/YYYY"
+					th:id="${project.endDate}" autocomplete="off" th:field="${project.endDate}" />
+				<div class="input-group-addon">
+					<i class="fa fa-calendar">
+					</i>
+				</div>
+
+			</div>
+
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Project Description</span>
+				<textarea type="text" placeholder="Enter Project Description"
+					th:field="${project.description}"></textarea>
+			</div>
+
+
+
+			<div class="form-group mb-3">
+				<button type="submit" class="btn btn-primary mb-2">Update Project</button>
+			</div>
+
+		</form>
+
+
+	</div>
+
+</body>
+<script type="text/javascript" src="/js/date-format.js"></script>
+<footer th:replace="layouts :: footer" src="/css/footer.css"></footer>
+</html>

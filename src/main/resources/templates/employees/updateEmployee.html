@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"></head>
+
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+
+	<div class="container" style="background:beige">
+
+		<h3>Update Employee</h3>
+		<hr>
+
+
+		<form th:action="@{/employees/save}" th:object="${employee}" method="post">
+		   
+		     
+
+			<div class="input-group mb-3">
+			
+			    <!-- this will be used to the employee field that clicked on used for update-->
+			    <input type="hidden" th:field="${employee.employeeId}"/>
+			    
+			    
+				<span class="input-group-text">First name</span>
+				<input type="text" aria-label="First name" class="form-control" th:field="${employee.firstName}">
+			</div>
+			<div class="input-group mb-3">
+				<span class="input-group-text">Last Name</span>
+				<input type="text" aria-label="Last name" class="form-control" th:field="${employee.lastName}">
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Email</span>
+				<input type="text" aria-label="Email" class="form-control" th:field="${employee.email}">
+			</div>
+
+			<div class="input-group mb-3">
+				<span class="input-group-text">Phone</span>
+				<input type="text" class="form-control" placeholder="Phone Number" th:field="${employee.phone}">
+			</div>
+
+			<div class="form-group mb-3">
+				<button type="submit" class="btn btn-primary mb-2">Confirm Update</button>
+			</div>
+		</form>
+
+
+	</div>
+
+</body>
+<footer th:replace="layouts :: footer" src="/css/footer.css"></footer>
+
+</html>
