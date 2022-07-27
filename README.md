@@ -1,1 +1,1 @@
-# product_springboot_workspace-prouduct-managment
+# Project is spring boot application.
